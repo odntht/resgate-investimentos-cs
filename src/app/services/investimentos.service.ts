@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { ListaInvestimentosComponent } from '../componentes/lista-investimentos/lista-investimentos.component';
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +9,7 @@ export class InvestimentosService {
   constructor() { }
 
   obterInvestimentos(){
-    return [
+    const listaInvestimentos = [
       {
         "response": {
           "status": "200",
@@ -131,6 +132,9 @@ export class InvestimentosService {
         }
       }
     ]
+    return listaInvestimentos;
+  
+  
   }
 
 }
