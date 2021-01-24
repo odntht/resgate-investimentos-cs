@@ -15,7 +15,7 @@
             </div>
             <div>
                 <p>Valor total a resgatar</p>
-                <p>R$ {{resgateTotal}}</p>
+                <p>R$ {{resgateTotal || 0}}</p>
             </div>
         </div>
     </div>
@@ -40,9 +40,10 @@
                 <!-- Weight Column -->
                 <ng-container matColumnDef="saldoTotalDisponivel">
                     <mat-header-cell *matHeaderCellDef> Valor a Resgatar </mat-header-cell>
-                    <mat-cell *matCellDef="let element"> <input type="text"> </mat-cell>
+                    <mat-cell *matCellDef="let element">
+                        <input type="text" [id]="element.id" (change)="atualizaValoresResgatar($event)" >
+                    </mat-cell>
                 </ng-container>
-        
                 <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
                 <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
             </mat-table>

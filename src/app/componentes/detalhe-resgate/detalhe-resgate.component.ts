@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
 import { InvestimentosService } from 'src/app/services/investimentos.service';
 import { AppComponent } from "../../app.component";
 import { MatDialog } from '@angular/material/dialog';
@@ -10,9 +10,11 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class DetalheResgateComponent implements OnInit {
   public investimentos: any = [];
-  resgateTotal : any;
+  somaValoresResgatar: Array<{id:number, valor:any}> = [
+    {id : 0,valor : 0}
+  ];
   displayedColumns: string[] = ['acao', 'saldoAcumulado', 'saldoTotalDisponivel'];
-
+  resgateTotal:number = 0;
   @Input() public parentData: any;
   
 
@@ -33,6 +35,22 @@ export class DetalheResgateComponent implements OnInit {
     console.log('Modal Aberta!');
     this.dialog.open(DialogElementsExampleDialog);
   }
+
+  atualizaValoresResgatar(event: any){
+    this.resgateTotal = 0;
+    let id = parseInt(event.target.id);
+    let valor = event.target.value;
+    let found = this.somaValoresResgatar.find(element => element.id == id);
+    if(!!found){
+      this.somaValoresResgatar[id].valor = valor;
+    } else {
+    this.somaValoresResgatar.push({id, valor});
+    }
+    this.somaValoresResgatar.forEach((element, index, array)=> {
+      this.resgateTotal += parseInt(element.valor);
+    });
+  }
+
 
 }
 
