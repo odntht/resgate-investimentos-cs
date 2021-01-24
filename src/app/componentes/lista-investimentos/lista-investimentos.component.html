@@ -16,7 +16,7 @@
         <!-- Weight Column -->
         <ng-container matColumnDef="saldoTotalDisponivel">
             <mat-header-cell *matHeaderCellDef> Saldo Total Disponível </mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.saldoTotalDisponivel}} </mat-cell>
+            <mat-cell *matCellDef="let element"> {{element.saldoTotalDisponivel | currency:'BRL':true}} </mat-cell>
         </ng-container>
 
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

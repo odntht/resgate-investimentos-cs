@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Observable } from 'rxjs';
 import { InvestimentosService } from 'src/app/services/investimentos.service';
 import { AppComponent } from "../../app.component";
@@ -25,8 +25,10 @@ interface Acoes {
   styleUrls: ['./lista-investimentos.component.css']
 })
 export class ListaInvestimentosComponent implements OnInit {
+
   listaInvestimentos: any;
   dataSource: any;
+
   constructor(
     private _investimentoService: InvestimentosService,
     private _appComponent: AppComponent,
@@ -39,7 +41,7 @@ export class ListaInvestimentosComponent implements OnInit {
         data => (
           this.listaInvestimentos = data,
           this.dataSource = this.listaInvestimentos.response.data.listaInvestimentos
-          ),
+        ),
         error => console.log(error),
       )
   }
@@ -51,8 +53,8 @@ export class ListaInvestimentosComponent implements OnInit {
   }
 
   abrirResgate(row: any) {
+    this._appComponent.investimentoSelecionado = row;
     if (row.indicadorCarencia == 'N') {
-      console.log(row);
       this._appComponent.selecionarPagina(2);
     } else {
       console.log('Possui Indicador de Carencia!');
