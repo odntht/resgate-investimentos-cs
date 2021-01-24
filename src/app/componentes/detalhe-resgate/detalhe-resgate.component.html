@@ -1,47 +1,55 @@
-<div>
-    <h1>Resgate</h1>
-    <div>
-        <h2>
-            Dados do Investimento
+<div class="cinza-claro" style="min-height: 100%;">
+    <div class="cinza-medio">
+        <h1 class=" texto-branco w-90p">RESGATE</h1>
+    </div>
+    <div class="cinza-escuro"><br></div>
+    <div class="mt-25">
+        <h2 class="texto-cinza-claro w-90p">
+            DADOS DO INVESTIMENTO
         </h2>
-        <div>
+        <div class="container branco w-90p borda pt-20p">
             <div>
-                <p>Nome</p>
-                <p>{{parentData.nome}}</p>
+                <div class="pl-24p">
+                    <p>Nome</p>
+                    <p>{{parentData.nome}}</p>
+                </div>
             </div>
             <div>
-                <p>Saldo total disponível</p>
-                <p>{{parentData.saldoTotalDisponivel | currency:'BRL':true}}</p>
+                <div class="borda-esquerda pl-24p">
+                    <p>Saldo total disponível</p>
+                    <p>{{parentData.saldoTotalDisponivel | currency:'BRL':true}}</p>
+                </div>
             </div>
             <div>
-                <p>Valor total a resgatar</p>
-                <p>R$ {{resgateTotal || 0}}</p>
+                <div class="borda-esquerda pl-24p">
+                    <p>Valor total a resgatar</p>
+                    <p>R$ {{resgateTotal || 0}}</p>
+                </div>
             </div>
         </div>
     </div>
-    <div>
-        <h2>Resgate do Seu Jeito</h2>
-        <div>
-            <h1>Investimentos</h1>
+    <div class="mt-25">
+        <h2 class="texto-cinza-claro w-90p">RESGATE DO SEU JEITO</h2>
+        <div class="borda w-90p">
             <mat-table [dataSource]="parentData.acoes" class="mat-elevation-z8">
                 <!-- Position Column -->
                 <ng-container matColumnDef="acao">
-                    <mat-header-cell *matHeaderCellDef> Ação </mat-header-cell>
+                    <mat-header-cell *matHeaderCellDef> AÇÃO </mat-header-cell>
                     <mat-cell *matCellDef="let element"> {{element.nome}} </mat-cell>
                 </ng-container>
-        
+
                 <!-- Name Column -->
                 <ng-container matColumnDef="saldoAcumulado">
-                    <mat-header-cell *matHeaderCellDef> Saldo Acumulado </mat-header-cell>
-                    <mat-cell *matCellDef="let element"> 
+                    <mat-header-cell *matHeaderCellDef> SALDO ACUMULADO </mat-header-cell>
+                    <mat-cell *matCellDef="let element">
                         {{(element.percentual*parentData.saldoTotalDisponivel)/100 | currency:'BRL':true}} </mat-cell>
                 </ng-container>
-        
+
                 <!-- Weight Column -->
                 <ng-container matColumnDef="saldoTotalDisponivel">
-                    <mat-header-cell *matHeaderCellDef> Valor a Resgatar </mat-header-cell>
+                    <mat-header-cell *matHeaderCellDef> VALOR A RESGATAR </mat-header-cell>
                     <mat-cell *matCellDef="let element">
-                        <input type="text" [id]="element.id" (change)="atualizaValoresResgatar($event)" >
+                        <input type="text" [id]="element.id" (change)="atualizaValoresResgatar($event)">
                     </mat-cell>
                 </ng-container>
                 <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
@@ -49,8 +57,8 @@
             </mat-table>
         </div>
     </div>
-    <div>
-        <button (click)="retornarPagina()">Cancelar</button>
-        <button (click)="abrirModal()">Confirmar Resgate</button>
+    <div class="container mt-25">
+        <button (click)="retornarPagina()" class="botao-vermelho m-auto">CANCELAR</button>
+        <button (click)="abrirModal()" class="botao-azul m-auto">CONFIRMAR RESGATE</button>
     </div>
 </div>

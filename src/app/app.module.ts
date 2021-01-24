@@ -6,6 +6,7 @@ import { MatTableModule } from "@angular/material/table";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDialogModule } from '@angular/material/dialog';
 import { HttpClientModule } from "@angular/common/http";
+import { MatGridListModule } from "@angular/material/grid-list";
 
 
 import { ListaInvestimentosComponent } from './componentes/lista-investimentos/lista-investimentos.component';
@@ -25,6 +26,7 @@ import { InvestimentosService } from './services/investimentos.service';
     MatTableModule,
     MatDialogModule,
     HttpClientModule,
+    MatGridListModule
   ],
   providers: [InvestimentosService],
   bootstrap: [AppComponent]

@@ -22,10 +22,12 @@ interface Acoes {
 @Component({
   selector: 'app-lista-investimentos',
   templateUrl: './lista-investimentos.component.html',
-  styleUrls: ['./lista-investimentos.component.css']
+  styleUrls: [
+    './lista-investimentos.component.css',
+     '../../app.component.css']
 })
 export class ListaInvestimentosComponent implements OnInit {
-
+  erroMsg : string = '';
   listaInvestimentos: any;
   dataSource: any;
 
@@ -58,7 +60,6 @@ export class ListaInvestimentosComponent implements OnInit {
       this._appComponent.selecionarPagina(2);
     } else {
       console.log('Possui Indicador de Carencia!');
-
     }
   }
   displayedColumns: string[] = ['nome', 'objetivo', 'saldoTotalDisponivel'];

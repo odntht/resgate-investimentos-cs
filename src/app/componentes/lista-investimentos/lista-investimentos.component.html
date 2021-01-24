@@ -1,25 +1,33 @@
-<div>
-    <h1>Investimentos</h1>
-    <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-        <!-- Position Column -->
-        <ng-container matColumnDef="nome">
-            <mat-header-cell *matHeaderCellDef> Nome </mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.nome}} </mat-cell>
-        </ng-container>
+<div class="cinza-claro sem-margem" style="min-height: 100%;">
+    <div class="cinza-medio">
+        <h1 class=" texto-branco  w-90p">INVESTIMENTOS</h1>
+    </div>
+    <div class="cinza-escuro"><br></div>
+    <div *ngIf="erroMsg">
+        <p>{{erroMsg}}</p>
+    </div>
+    <div class="mt-25">
+        <mat-table [dataSource]="dataSource" class="mat-elevation-z8  borda w-90p">
+            <!-- Position Column -->
+            <ng-container matColumnDef="nome">
+                <mat-header-cell *matHeaderCellDef> NOME </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.nome}} </mat-cell>
+            </ng-container>
 
-        <!-- Name Column -->
-        <ng-container matColumnDef="objetivo">
-            <mat-header-cell *matHeaderCellDef> Objetivo </mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.objetivo}} </mat-cell>
-        </ng-container>
+            <!-- Name Column -->
+            <ng-container matColumnDef="objetivo">
+                <mat-header-cell *matHeaderCellDef> OBJETIVO </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.objetivo}} </mat-cell>
+            </ng-container>
 
-        <!-- Weight Column -->
-        <ng-container matColumnDef="saldoTotalDisponivel">
-            <mat-header-cell *matHeaderCellDef> Saldo Total Disponível </mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.saldoTotalDisponivel | currency:'BRL':true}} </mat-cell>
-        </ng-container>
+            <!-- Weight Column -->
+            <ng-container matColumnDef="saldoTotalDisponivel">
+                <mat-header-cell *matHeaderCellDef> SALDO TOTAL DISPONÍVEL </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.saldoTotalDisponivel | currency:'BRL':true}} </mat-cell>
+            </ng-container>
 
-        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-        <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="abrirResgate(row)"></mat-row>
-    </mat-table>
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="abrirResgate(row)"></mat-row>
+        </mat-table>
+    </div>
 </div>
