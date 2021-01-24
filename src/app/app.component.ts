@@ -7,4 +7,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'resgateInvestimentos-CS';
+
+  pagina:number = 1;
+  public selecionarPagina(pagina:number){
+    this.pagina = pagina;
+  }
 }
