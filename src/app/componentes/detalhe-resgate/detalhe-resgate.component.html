@@ -7,21 +7,46 @@
         <div>
             <div>
                 <p>Nome</p>
-                <p>Investimento 1</p>
+                <p>{{parentData.nome}}</p>
             </div>
             <div>
                 <p>Saldo total disponível</p>
-                <p>R$ XX.XXX,xx</p>
+                <p>{{parentData.saldoTotalDisponivel | currency:'BRL':true}}</p>
             </div>
             <div>
                 <p>Valor total a resgatar</p>
-                <p>R$ XX.XXX,xx</p>
+                <p>R$ {{resgateTotal}}</p>
             </div>
         </div>
     </div>
     <div>
         <h2>Resgate do Seu Jeito</h2>
-        <table></table>
+        <div>
+            <h1>Investimentos</h1>
+            <mat-table [dataSource]="parentData.acoes" class="mat-elevation-z8">
+                <!-- Position Column -->
+                <ng-container matColumnDef="acao">
+                    <mat-header-cell *matHeaderCellDef> Ação </mat-header-cell>
+                    <mat-cell *matCellDef="let element"> {{element.nome}} </mat-cell>
+                </ng-container>
+        
+                <!-- Name Column -->
+                <ng-container matColumnDef="saldoAcumulado">
+                    <mat-header-cell *matHeaderCellDef> Saldo Acumulado </mat-header-cell>
+                    <mat-cell *matCellDef="let element"> 
+                        {{(element.percentual*parentData.saldoTotalDisponivel)/100 | currency:'BRL':true}} </mat-cell>
+                </ng-container>
+        
+                <!-- Weight Column -->
+                <ng-container matColumnDef="saldoTotalDisponivel">
+                    <mat-header-cell *matHeaderCellDef> Valor a Resgatar </mat-header-cell>
+                    <mat-cell *matCellDef="let element"> <input type="text"> </mat-cell>
+                </ng-container>
+        
+                <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+            </mat-table>
+        </div>
     </div>
     <div>
         <button (click)="retornarPagina()">Cancelar</button>

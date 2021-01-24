@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { InvestimentosService } from 'src/app/services/investimentos.service';
 import { AppComponent } from "../../app.component";
 import { MatDialog } from '@angular/material/dialog';
@@ -9,8 +9,12 @@ import { MatDialog } from '@angular/material/dialog';
   styleUrls: ['./detalhe-resgate.component.css']
 })
 export class DetalheResgateComponent implements OnInit {
-
   public investimentos: any = [];
+  resgateTotal : any;
+  displayedColumns: string[] = ['acao', 'saldoAcumulado', 'saldoTotalDisponivel'];
+
+  @Input() public parentData: any;
+  
 
   constructor(
     private _investimentoService: InvestimentosService,
@@ -18,7 +22,7 @@ export class DetalheResgateComponent implements OnInit {
     public dialog: MatDialog) { }
 
   ngOnInit() {
-    
+    console.log(this.parentData);
   }
 
   retornarPagina() {
