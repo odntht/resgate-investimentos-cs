@@ -2,6 +2,7 @@ import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
 import { InvestimentosService } from 'src/app/services/investimentos.service';
 import { AppComponent } from "../../app.component";
 import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-detalhe-resgate',
@@ -23,7 +24,8 @@ export class DetalheResgateComponent implements OnInit {
   constructor(
     private _investimentoService: InvestimentosService,
     private _appComponent: AppComponent,
-    public dialog: MatDialog) { }
+    public dialog: MatDialog,
+    private _snackBar: MatSnackBar) { }
 
   ngOnInit() {
     console.log(this.parentData);
@@ -35,6 +37,13 @@ export class DetalheResgateComponent implements OnInit {
 
   abrirModal() {
     this.dialog.open(DialogElementsExampleDialog);
+  }
+
+  openSnackBar(message:string) {
+    this._snackBar.openFromComponent(AlertComponent, {
+      duration: 2000,
+      announcementMessage : message
+    });
   }
 
   atualizaValoresResgatar(event: any) {
@@ -54,15 +63,14 @@ export class DetalheResgateComponent implements OnInit {
       });
     } else {
       console.log('Valor excedido!');
-      
+      this.openSnackBar('Valor Excedido!');
     }
   }
 
-
+  
 }
 
 @Component({
-  selector: 'dialog-elements-example-dialog',
   template: `
   <div class="w-74vw borda">
     <div class="container jc-c">
@@ -90,8 +98,6 @@ export class DetalheResgateComponent implements OnInit {
     '../../app.component.css']
 })
 
-
-
 export class DialogElementsExampleDialog {
 
   constructor(public dialog: MatDialog) { }
@@ -100,4 +106,21 @@ export class DialogElementsExampleDialog {
     console.log('Fechando Modal...');
     this.dialog.closeAll();
   }
+  
+}
+
+
+@Component({
+  template: `
+  <span class="example-pizza-party">
+       O valor informado excede o saldo acumulado!
+  </span>`,
+  styles: [`
+    .example-pizza-party {
+      color: hotpink;
+    }
+  `],
+})
+export class AlertComponent {
+  
 }

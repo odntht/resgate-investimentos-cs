@@ -7,11 +7,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDialogModule } from '@angular/material/dialog';
 import { HttpClientModule } from "@angular/common/http";
 import { MatGridListModule } from "@angular/material/grid-list";
-
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 import { ListaInvestimentosComponent } from './componentes/lista-investimentos/lista-investimentos.component';
 import { DetalheResgateComponent } from './componentes/detalhe-resgate/detalhe-resgate.component';
 import { InvestimentosService } from './services/investimentos.service';
+
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { InvestimentosService } from './services/investimentos.service';
     MatTableModule,
     MatDialogModule,
     HttpClientModule,
-    MatGridListModule
+    MatGridListModule,
+    MatSnackBarModule
   ],
   providers: [InvestimentosService],
   bootstrap: [AppComponent]

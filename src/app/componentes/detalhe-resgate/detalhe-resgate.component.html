@@ -59,6 +59,6 @@
     </div>
     <div class="container mt-25">
         <button (click)="retornarPagina()" class="botao-vermelho m-auto">CANCELAR</button>
-        <button (click)="abrirModal()" class="botao-azul m-auto">CONFIRMAR RESGATE</button>
+        <button (click)="abrirModal()" class="botao-azul m-auto" [disabled]="!resgateTotal">CONFIRMAR RESGATE</button>
     </div>
 </div>
