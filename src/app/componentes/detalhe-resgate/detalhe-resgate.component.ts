@@ -48,7 +48,9 @@ export class DetalheResgateComponent implements OnChanges {
 
   atualizaValoresResgatar(valor: number, id: number) {
     console.log(valor, id);
-    
+    if(valor == undefined){
+      valor = 0;
+    }
     this.resgateTotal = 0;
     let found = this.somaValoresResgatar.find(element => element.id == id);
     let valorMaximo = (this.parentData.acoes[id-1].percentual * this.parentData.saldoTotalDisponivel)/100
@@ -59,7 +61,7 @@ export class DetalheResgateComponent implements OnChanges {
         this.somaValoresResgatar.push({ id, valor });
       }
       this.somaValoresResgatar.forEach((element, index, array) => {
-        this.resgateTotal += parseInt(element.valor);
+        this.resgateTotal += parseFloat(element.valor);
       });
     } else {
       console.log('Valor excedido!');

@@ -23,7 +23,7 @@
             <div>
                 <div class="borda-esquerda pl-24p">
                     <p>Valor total a resgatar</p>
-                    <p>{{resgateTotal || 0 | currency:'BRL':true}}</p>
+                    <p>{{resgateTotal | currency:'BRL':true}}</p>
                 </div>
             </div>
         </div>
@@ -64,6 +64,6 @@
     </div>
     <div class="container mt-25">
         <button (click)="retornarPagina()" class="botao-vermelho m-auto">CANCELAR</button>
-        <button (click)="abrirModal()" class="botao-azul m-auto" [disabled]="!resgateTotal">CONFIRMAR RESGATE</button>
+        <button (click)="abrirModal()" class="botao-azul m-auto" [disabled]="!resgateTotal" [ngClass]="{disabled: resgateTotal == 0}">CONFIRMAR RESGATE</button>
     </div>
 </div>
