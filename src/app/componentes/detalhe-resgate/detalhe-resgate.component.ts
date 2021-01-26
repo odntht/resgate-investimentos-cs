@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { InvestimentosService } from 'src/app/services/investimentos.service';
 import { AppComponent } from "../../app.component";
 import { MatDialog } from '@angular/material/dialog';
@@ -11,25 +11,25 @@ import { MatSnackBar } from "@angular/material/snack-bar";
     './detalhe-resgate.component.css',
     '../../app.component.css']
 })
-export class DetalheResgateComponent implements OnInit {
+export class DetalheResgateComponent implements OnChanges {
   public investimentos: any = [];
   somaValoresResgatar: Array<{ id: number, valor: any }> = [
     { id: 0, valor: 0 }
   ];
   displayedColumns: string[] = ['acao', 'saldoAcumulado', 'saldoTotalDisponivel'];
   resgateTotal: number = 0;
+  value: any
   @Input() public parentData: any;
-
 
   constructor(
     private _investimentoService: InvestimentosService,
     private _appComponent: AppComponent,
     public dialog: MatDialog,
     private _snackBar: MatSnackBar) { }
-
-  ngOnInit() {
-    console.log(this.parentData);
+  ngOnChanges(changes: SimpleChanges) {
+    console.log(changes);
   }
+
 
   retornarPagina() {
     this._appComponent.selecionarPagina(1);
@@ -46,10 +46,10 @@ export class DetalheResgateComponent implements OnInit {
     });
   }
 
-  atualizaValoresResgatar(event: any) {
+  atualizaValoresResgatar(valor: number, id: number) {
+    console.log(valor, id);
+    
     this.resgateTotal = 0;
-    let id = parseInt(event.target.id);
-    let valor = event.target.value;
     let found = this.somaValoresResgatar.find(element => element.id == id);
     let valorMaximo = (this.parentData.acoes[id-1].percentual * this.parentData.saldoTotalDisponivel)/100
     if (valor <= valorMaximo) {
